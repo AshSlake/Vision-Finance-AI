@@ -1,5 +1,5 @@
 const TransactionPage = () => {
-    return ( <h1>TransactionPage </h1> );
-}
- 
+  return <h1>Transaction Page </h1>;
+};
+
 export default TransactionPage;
