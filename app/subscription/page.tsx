@@ -1,9 +1,10 @@
 import NavBar from "../_components/navbar";
-import { auth } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader } from "../_components/ui/card";
 import { CheckIcon, XIcon } from "lucide-react";
 import AcquarePlanButton from "./_components/acquire-plan-button";
+import { Badge } from "../_components/ui/badge";
 
 const SubscriptionPage = async () => {
   const { userId } = await auth();
@@ -11,6 +12,8 @@ const SubscriptionPage = async () => {
     redirect("/login");
   }
 
+  const user = await clerkClient().users.getUser(userId);
+  const hasPremiumPlan = user?.publicMetadata.subscriptionPlan === "premium";
   return (
     <>
       <NavBar />
@@ -18,8 +21,18 @@ const SubscriptionPage = async () => {
         <div className="text-2xl font-bold"> Assinatura</div>
 
         <div className="flex gap-6">
-          <Card className="w-[450px]">
-            <CardHeader>
+          <Card
+            className={`w-[450px] ${!hasPremiumPlan ? "border-white" : ""}`}
+          >
+            <CardHeader className="relative border-b border-solid py-8">
+              {!hasPremiumPlan && (
+                <Badge
+                  className="absolute left-4 top-4 bg-white/10 text-white"
+                  variant="outline"
+                >
+                  Atual
+                </Badge>
+              )}
               <h2 className="text-center text-2xl font-semibold">
                 Plano Basico
               </h2>
@@ -41,8 +54,18 @@ const SubscriptionPage = async () => {
             </CardContent>
           </Card>
 
-          <Card className="w-[450px]">
-            <CardHeader>
+          <Card
+            className={`w-[450px] ${hasPremiumPlan ? "border-primary" : ""}`}
+          >
+            <CardHeader className="relative border-b border-solid py-8">
+              {hasPremiumPlan && (
+                <Badge
+                  className="absolute left-4 top-4 bg-primary/10 text-primary"
+                  variant="outline"
+                >
+                  Ativo
+                </Badge>
+              )}
               <h2 className="text-center text-2xl font-semibold">
                 Plano Premium
               </h2>
@@ -60,8 +83,8 @@ const SubscriptionPage = async () => {
               <div className="flex items-center gap-3">
                 <CheckIcon className="text-primary" />
                 <p>Relatorios de IA</p>
-                <AcquarePlanButton />
               </div>
+              <AcquarePlanButton />
             </CardContent>
           </Card>
         </div>
