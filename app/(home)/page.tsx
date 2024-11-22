@@ -1,5 +1,5 @@
 // Importar módulos e componentes necessários de bibliotecas externas
-import { auth } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import NavBar from "../_components/navbar";
 import SummaryCards from "./_components/summary-cards";
@@ -11,6 +11,7 @@ import ExpensesPerCategory from "./_components/expense-per-category";
 import LastTransactionTablle from "./_components/last-transaction-table";
 import { canUserAddTransactions } from "../_data/can-user-add-transaction";
 import AibButton from "./_components/ia-report-button";
+import ButtonIsNotRequireIa from "./_components/ia-not-report-button";
 
 // Definir a interface de props para o componente Home
 interface HomeProps {
@@ -40,6 +41,9 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
   // Verificar se o usuário pode adicionar transações
   const userCanAddTransactions = await canUserAddTransactions();
 
+  const user = await clerkClient().users.getUser(userId);
+  const hasPremiumPlan = user?.publicMetadata.subscriptionPlan === "premium";
+
   // Renderizar o componente Home
   return (
     <>
@@ -48,7 +52,11 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold">Painel de Controle</h1>
           <div className="flex items-center gap-3">
-            <AibButton month={month} />
+            {hasPremiumPlan && <AibButton month={month} />}
+            {!hasPremiumPlan && <ButtonIsNotRequireIa />}
+            <div className="card">
+              <div className="sparkle"></div>
+            </div>
             <MonthSelect />
           </div>
         </div>

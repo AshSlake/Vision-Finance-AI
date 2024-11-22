@@ -58,6 +58,23 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        particles: "particles 5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        float: "float 6s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      },
+      keyframes: {
+        particles: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-100%)" },
+        },
+        float: {
+          "0%": { transform: "translateY(0)" },
+          "25%": { transform: "translateY(-2px)" },
+          "50%": { transform: "translateY(-5px)" },
+          "75%": { transform: "translateY(-2px)" },
+          "100%": { transform: "translateY(0)" },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

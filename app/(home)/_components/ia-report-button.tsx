@@ -11,11 +11,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/app/_components/ui/dialog";
-import { BotIcon, Loader2Icon } from "lucide-react";
+import { Loader2Icon } from "lucide-react";
 import { GenerateAiReport } from "../_actions/generate-ai-report";
 import { useState } from "react";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import Markdown from "react-markdown";
+import GeminiButton from "./efectButtonIaReport";
 
 interface AiReportButtonProps {
   month: string;
@@ -36,11 +37,11 @@ const AibButton = ({ month }: AiReportButtonProps) => {
   };
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="ghost">
-          Relatorio IA
-          <BotIcon />
-        </Button>
+      <DialogTrigger>
+        <GeminiButton onClick={handleGenerateReportClick} disabled={isLoading}>
+          {isLoading && <Loader2Icon className="mr-2 animate-spin" />}
+          Gerar relatório de IA
+        </GeminiButton>{" "}
       </DialogTrigger>
       <DialogContent className="max-w-[600px]">
         <DialogHeader>
