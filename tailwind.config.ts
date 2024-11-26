@@ -59,8 +59,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       animation: {
-        particles: "particles 5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        float: "float 6s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        particles: "particles 3s cubic-bezier(0.4, 0, 0.6, 1) forwards",
+        float: "float 5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       keyframes: {
         particles: {

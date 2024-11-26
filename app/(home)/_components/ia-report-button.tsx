@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/app/_components/ui/button";
 import {
   Dialog,
@@ -16,7 +15,7 @@ import { GenerateAiReport } from "../_actions/generate-ai-report";
 import { useState } from "react";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import Markdown from "react-markdown";
-import GeminiButton from "./efectButtonIaReport";
+import GeminiButton from "./_effects/efectButtonIaReport";
 
 interface AiReportButtonProps {
   month: string;

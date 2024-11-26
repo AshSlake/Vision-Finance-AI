@@ -54,9 +54,6 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
           <div className="flex items-center gap-3">
             {hasPremiumPlan && <AibButton month={month} />}
             {!hasPremiumPlan && <ButtonIsNotRequireIa />}
-            <div className="card">
-              <div className="sparkle"></div>
-            </div>
             <MonthSelect />
           </div>
         </div>

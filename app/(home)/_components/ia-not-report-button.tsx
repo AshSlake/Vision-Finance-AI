@@ -14,7 +14,7 @@ import {
 import { createCkeckout } from "@/app/subscription/_actions/create-checkout";
 import { loadStripe } from "@stripe/stripe-js";
 import { FrownIcon } from "lucide-react";
-import GeminiButton from "./efectButtonIaReport";
+import GeminiButton from "./_effects/efectButtonIaReport";
 
 const ButtonIsNotRequireIa = () => {
   const handleAcquirePlanClickForIA = async () => {
@@ -33,7 +33,7 @@ const ButtonIsNotRequireIa = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <GeminiButton>Relatorio IA</GeminiButton>
+        <GeminiButton>Gerar relatório de IA</GeminiButton>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="animate-pulse border-danger">

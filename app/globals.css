@@ -79,3 +79,63 @@ body {
     @apply h-full bg-background text-foreground;
   }
 }
+
+/* Estilos para o botão */
+
+.gemini-button {
+  position: relative; /* Para posicionar os elementos flutuantes */
+  display: inline-flex; /* Para alinhar o ícone e o texto */
+  align-items: center;
+  justify-content: center; /* Centralizar horizontalmente o conteúdo */
+  gap: 8px; /* Espaçamento entre o texto e o ícone */
+  padding: 10px 16px; /* Espaçamento interno */
+  border-radius: 8px; /* Cantos arredondados */
+  background-color: #333; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  font-weight: bold;
+  border: none; /* Remover borda padrão */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  transition: background-color 0.3s ease; /* Transição suave na cor de fundo */
+}
+
+.gemini-button:hover {
+  background-color: #555; /* Cor de fundo ao passar o mouse */
+}
+
+.gemini-button .gemini-icon {
+  /* Estilos para o ícone */
+  width: 16px;
+  height: 16px;
+}
+
+/* Estilos para o efeito de partículas */
+.gemini-button:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 128, 255, 0.2); /* Azul translúcido */
+  filter: blur(50px); /* Efeito de desfoque */
+  z-index: -1; /* Posicionar atrás do botão */
+}
+
+.gemini-button:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Esconder as partículas que ultrapassam os limites */
+}
+
+.gemini-button:hover .particle {
+  position: absolute;
+  width: 5px; /* Tamanho das partículas */
+  height: 5px;
+  border-radius: 50%; /* Formato circular */
+  background-color: white; /* Cor das partículas */
+  animation: float 3s infinite linear; /* Animação de flutuação */
+}
