@@ -72,9 +72,7 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
             </div>
           </div>
           <LastTransactionTablle
-            lastTransactions={JSON.parse(
-              JSON.stringify(dashboard.lastTransactions),
-            )}
+            lastTransactions={dashboard.lastTransactions}
           />
         </div>
       </div>
