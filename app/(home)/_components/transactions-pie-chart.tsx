@@ -60,8 +60,8 @@ const TransactionpieChart = ({
     },
   ];
   return (
-    <Card className="flex flex-col p-6">
-      <CardContent className="flex-1 pb-0">
+    <Card className="flex flex-col justify-center p-3">
+      <CardContent className="flex-3 pb-0">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square max-h-[250px]"
@@ -80,23 +80,25 @@ const TransactionpieChart = ({
           </PieChart>
         </ChartContainer>
 
-        <div className="space-y-3">
-          <PercenetageItem
-            icon={<TrendingUpIcon size={16} className="text-primary" />}
-            title="Receitas"
-            value={typesPercentage[TransactionType.DEPOSIT]}
-          />
+        <div className="parent">
+          <div className="hidden space-y-3 md:block">
+            <PercenetageItem
+              icon={<TrendingUpIcon size={16} className="text-primary" />}
+              title="Receitas"
+              value={typesPercentage[TransactionType.DEPOSIT]}
+            />
 
-          <PercenetageItem
-            icon={<TrendingDownIcon size={16} className="text-danger" />}
-            title="Despesas"
-            value={typesPercentage[TransactionType.EXPENSE]}
-          />
-          <PercenetageItem
-            icon={<PiggyBankIcon size={16} className="text-white" />}
-            title="Investimentos"
-            value={typesPercentage[TransactionType.INVESTMENT]}
-          />
+            <PercenetageItem
+              icon={<TrendingDownIcon size={16} className="text-danger" />}
+              title="Despesas"
+              value={typesPercentage[TransactionType.EXPENSE]}
+            />
+            <PercenetageItem
+              icon={<PiggyBankIcon size={16} className="text-white" />}
+              title="Investimentos"
+              value={typesPercentage[TransactionType.INVESTMENT]}
+            />
+          </div>
         </div>
       </CardContent>
     </Card>

@@ -139,3 +139,15 @@ body {
   background-color: white; /* Cor das partículas */
   animation: float 3s infinite linear; /* Animação de flutuação */
 }
+
+.parent .hidden {
+  /* Seletor mais específico */
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .parent .sm\:block {
+    /* Seletor mais específico */
+    display: block;
+  }
+}
