@@ -12,9 +12,13 @@ import LastTransactionTablle from "./_components/last-transaction-table";
 import { canUserAddTransactions } from "../_data/can-user-add-transaction";
 import AibButton from "./_components/ia-report-button";
 import ButtonIsNotRequireIa from "./_components/ia-not-report-button";
+import { TransactionPercentagePerType } from "../_data/get-dashboard/types";
+import PercenetageItem from "./_components/percentage-item";
+import { PiggyBankIcon, TrendingDownIcon, TrendingUpIcon } from "lucide-react";
 
 // Definir a interface de props para o componente Home
 interface HomeProps {
+  typesPercentage: TransactionPercentagePerType;
   searchParams: { month: string };
 }
 
@@ -64,11 +68,38 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
               {...dashboard}
               userCanAddTransaction={userCanAddTransactions}
             />
-            <div className="grid grid-cols-1 grid-rows-1 gap-6 overflow-hidden sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-3 grid-rows-1 gap-6 overflow-hidden">
               <TransactionpieChart {...dashboard} />
-              <ExpensesPerCategory
-                expensesPerCategory={dashboard.totalExpensePerCategory}
-              />
+
+              <div className="col-span-2 hidden h-full xl:block">
+                <ExpensesPerCategory
+                  expensesPerCategory={dashboard.totalExpensePerCategory}
+                />
+              </div>
+
+              <div className="hidden flex-row gap-6 space-y-3 rounded-md border p-3 md:block xl:hidden">
+                <PercenetageItem
+                  icon={<TrendingUpIcon size={16} className="text-primary" />}
+                  title="Receitas"
+                  value={dashboard.typesPercentage.DEPOSIT}
+                />
+                <PercenetageItem
+                  icon={<TrendingDownIcon size={16} className="text-danger" />}
+                  title="Despesas"
+                  value={dashboard.typesPercentage.EXPENSE}
+                />
+                <PercenetageItem
+                  icon={<PiggyBankIcon size={16} className="text-white" />}
+                  title="Investimentos"
+                  value={dashboard.typesPercentage.INVESTMENT}
+                />
+              </div>
+
+              <div className="hidden flex-row gap-6 overflow-hidden md:block xl:hidden">
+                <ExpensesPerCategory
+                  expensesPerCategory={dashboard.totalExpensePerCategory}
+                />
+              </div>
             </div>
           </div>
           <LastTransactionTablle
